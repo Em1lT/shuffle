@@ -1,0 +1,54 @@
+name: Deploy to UpCloud
+
+on:
+  push:
+    # Pattern matched against refs/tags
+    tags:        
+      - '**' 
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Pull the code from GitHub to the temporary runner
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Login to UpCloud via SSH and execute commands
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          ssh-agent: true
+          # The script below runs ON your UpCloud server
+          script: |
+            set -e
+            
+            # Go to your project directory
+            cd ./shuffle
+
+            mkdir -p ~/.ssh
+            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts 2>/dev/null
+            
+            # Sync with the latest code on GitHub
+            git fetch origin main
+            git reset --hard origin/main
+            
+            # Write the .env file from GitHub Secrets
+            # This handles multi-line secrets safely
+            cat <<EOF > .env
+            ${{ secrets.ENV_FILE }}
+            EOF
+            
+            # Rebuild and restart the containers
+            # --build ensures the new code is baked into the images
+            docker compose up -d --build frontend backend
+            
+            # Remove unused images to keep the VPS disk clean
+            docker image prune -f
+            
+            echo "✅ Deployment Successful!"

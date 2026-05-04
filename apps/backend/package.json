@@ -1,0 +1,19 @@
+{
+  "name": "@shuffle:backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@hono/swagger-ui": "^0.6.1",
+    "@shuffle:shared": "workspace:*",
+    "date-fns": "catalog:shared",
+    "drizzle-orm": "catalog:shared",
+    "hono": "^4.12.16",
+    "zod-openapi": "^5.4.6"
+  },
+  "scripts": {
+    "dev": "bun --watch index.ts",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
+  }
+}
