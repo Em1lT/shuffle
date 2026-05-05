@@ -1,0 +1,3 @@
+shuffle.emiltoivainen.com {
+    reverse_proxy backend:{$PORT}
+}

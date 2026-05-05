@@ -5,11 +5,12 @@
   "private": true,
   "dependencies": {
     "@hono/swagger-ui": "^0.6.1",
+    "@hono/zod-openapi": "catalog:shared",
+    "zod": "catalog:shared",
     "@shuffle:shared": "workspace:*",
     "date-fns": "catalog:shared",
     "drizzle-orm": "catalog:shared",
-    "hono": "^4.12.16",
-    "zod-openapi": "^5.4.6"
+    "hono": "^4.12.16"
   },
   "scripts": {
     "dev": "bun --watch index.ts",
