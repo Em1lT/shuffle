@@ -2,19 +2,19 @@ import { relations, sql } from 'drizzle-orm'
 import { pgTable, text, timestamp, unique, uuid } from 'drizzle-orm/pg-core'
 
 export const users = pgTable('users', {
-  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid('id').primaryKey().default(sql`uuidv7()`),
   name: text('name').notNull(),
 })
 
 export const events = pgTable('events', {
-  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid('id').primaryKey().default(sql`uuidv7()`),
   name: text('name').notNull(),
   createdAt: timestamp('createdAt', { precision: 3, mode: 'date' }).notNull().defaultNow(),
   updatedAt: timestamp('updatedAt', { precision: 3, mode: 'date' }).notNull().defaultNow(),
 })
 
 export const eventDates = pgTable('event_dates', {
-  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid('id').primaryKey().default(sql`uuidv7()`),
   name: text('name'),
   date: timestamp('date', { precision: 3, mode: 'date' }).notNull(),
   createdAt: timestamp('createdAt', { precision: 3, mode: 'date' }).notNull().defaultNow(),
@@ -27,7 +27,7 @@ export const eventDates = pgTable('event_dates', {
 ])
 
 export const eventVotes = pgTable('event_votes', {
-  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid('id').primaryKey().default(sql`uuidv7()`),
   name: text('name').notNull(),
   createdAt: timestamp('createdAt', { precision: 3, mode: 'date' }).notNull().defaultNow(),
   updatedAt: timestamp('updatedAt', { precision: 3, mode: 'date' }).notNull().defaultNow(),

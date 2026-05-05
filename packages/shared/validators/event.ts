@@ -32,10 +32,6 @@ export const suitableDateEventResponseSchema =
 export const eventResponseSchema =
   z.object({
     id: z.string(),
-    name: z
-      .string(),
-    dates: z.array(z.date()),
-    votes: z.array(datesSchema)
   })
 
 export const eventVoteSchema =

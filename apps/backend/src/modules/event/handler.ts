@@ -21,8 +21,8 @@ export const getEventHandler: RouteHandler<typeof getEventRoute> = async (ctx) =
 export const postEventHandler: RouteHandler<typeof postEventRoute> = async (ctx) => {
   const data = ctx.req.valid('json')
 
-  const event = await eventService.createEvent(data)
-  return ctx.json(event)
+  const id = await eventService.createEvent(data)
+  return ctx.json({ id })
 }
 
 export const postEventVoteHandler: RouteHandler<typeof postEventVoteRoute> = async (ctx) => {

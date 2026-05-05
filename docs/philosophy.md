@@ -13,6 +13,13 @@ This was made for a assignment and is a backend project for a scheduling API. Be
 - The project should be accessed easily by friends, so there should not be any authentication, but should be somewhat proetected by the outside world
 - The project should be fun!
 
+
+## Important Info
+
+Running on upcloud server with 1GB ram and 1CPU. 3€ per month plan so can be a little slow at times.
+Swagger can be found at `https://shuffle.emiltoivainen.com`
+
+
 ## Tech stack
 
 - **Runtime**: Bun
@@ -32,6 +39,8 @@ I decided to use PostgreSQL as the database. I'm most familiar with Postgres and
 
 I created a relations between the event, event dates and users. So i would have just return the naturally created objects instead of the arrays. That's why i switched from Prisma to Drizzle. To get more control on the returning types. Prisma would return an array of objects after insert although drizzle was not that familiar to me. 
 
+Instead of using auto increment id's I decided to use uuids. Simply for giving a little more randomness to the ids. That way the events could be only known when the event id is shared ( The /events endpoints defeats the purpose of uuids, but im thinking of a real world scenario )
+
 ### Project structure
 
 Project is structured in a monorepo with tightly combinded by Bun workspaces. the main applications (backend) is located in the apps folder. In the future it could also be location for the web or mobile applications. The shared folder contains the database schema, validators and environment config. That way the schema types can be used accross the applications aswell as the validators. reducing the amount of code duplication and increasing the productivity.
@@ -49,7 +58,8 @@ Fair game to say that the project is not finished yet when the 2 hour mark was r
 
 ### CI
 
-    TODO
+Made a base skeleton structure for continous integration. Uses github actions and git tags to update the project in the server. DHowever did not add github secrets or activate the pipeline, because of the project being public. I just cloned the application to the server and started the docker compose with docker-compose up command. Caddy should handle the ssl cert and i just added A record to my own domain. Not really the most ideal way but at first sufficient and most importantly fast way to get things going. Update now has to be done manually with `docker-compose build backend` command
+
 
 ### AI in the development
 

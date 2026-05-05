@@ -16,7 +16,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:migrate:deploy": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "db:start": "docker run --name shuffle-dev -p 5432:5432 -e POSTGRES_USER=shuffle -e POSTGRES_DB=shuffle-dev -e POSTGRES_PASSWORD=postgres -d postgres"
+    "db:start": "docker run --name shuffle-dev -p 5432:5432 -e POSTGRES_USER=shuffle -e POSTGRES_DB=shuffle-dev -e POSTGRES_PASSWORD=postgres -d postgres:18"
   },
   "dependencies": {
     "@hono/zod-openapi": "catalog:shared",

@@ -40,8 +40,9 @@ const eventInfoQuery = (id: string) =>
     .groupBy(events.id)
     .limit(1)
 
-export const getEvents = () =>
-  db.select({ id: events.id, name: events.name }).from(events)
+export const getEvents = () => {
+  return db.select({ id: events.id, name: events.name }).from(events)
+}
 
 export const getEvent = async (id: string) => {
   const [event] = await eventInfoQuery(id)
@@ -53,15 +54,13 @@ export const createEvent = async (data: { name: string; dates: Date[] }) => {
     const [created] = await tx.insert(events).values({ name: data.name }).returning()
     if (!created) throw new Error('Failed to create event')
 
-    await tx.insert(eventDates).values(
-      data.dates.map((date) => ({ eventId: created.id, date }))
-    )
+    const eventDateItems = data.dates.map((date) => ({ eventId: created.id, date }))
+    await tx.insert(eventDates).values(eventDateItems)
 
     return created.id
   })
 
-  const [event] = await eventInfoQuery(eventId)
-  return event
+  return eventId
 }
 
 export const voteOnEvent = async (id: string, data: { name: string; votes: Date[] }) => {
