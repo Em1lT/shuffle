@@ -18,13 +18,14 @@ baseApp.get("/check_health", (c) =>
   })
 );
 
+// Swagger UI
+baseApp.doc("/docs/spec", baseDocs);
+baseApp.get("/docs/ui", swaggerUI({ url: "/docs/spec" }));
+baseApp.get("/", swaggerUI({ url: "/docs/spec" }));
+
 // Environment check for staring different functions based on environment
 if (env.NODE_ENV === "development") {
   showRoutes(baseApp, { verbose: true });
-  // Swagger UI
-  baseApp.doc("/docs/spec", baseDocs);
-  baseApp.get("/docs/ui", swaggerUI({ url: "/docs/spec" }));
-
   console.log("Shuffle API is running on port", env.PORT);
 }
 
