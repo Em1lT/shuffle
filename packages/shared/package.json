@@ -1,32 +1,32 @@
 {
-  "name": "@shuffle:shared",
-  "module": "index.ts",
-  "description": "Shared validation and environment logic for backend and frontend",
-  "private": true,
-  "type": "module",
-  "exports": {
-    ".": "./index.ts",
-    "./database": "./database/index.ts",
-    "./database/schema": "./database/schema.ts",
-    "./validators": "./validators/index.ts"
-  },
-  "scripts": {
-    "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push",
-    "db:migrate": "drizzle-kit migrate",
-    "db:migrate:deploy": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio",
-    "db:start": "docker run --name shuffle-dev -p 5432:5432 -e POSTGRES_USER=shuffle -e POSTGRES_DB=shuffle-dev -e POSTGRES_PASSWORD=postgres -d postgres:18"
-  },
-  "dependencies": {
-    "@hono/zod-openapi": "catalog:shared",
-    "@t3-oss/env-core": "^0.13.8",
-    "date-fns": "catalog:shared",
-    "drizzle-orm": "catalog:shared",
-    "postgres": "^3.4.5",
-    "zod": "^4.1.13"
-  },
-  "devDependencies": {
-    "drizzle-kit": "^0.28.1"
-  }
+	"name": "@shuffle:shared",
+	"module": "index.ts",
+	"description": "Shared validation and environment logic for backend and frontend",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./index.ts",
+		"./database": "./database/index.ts",
+		"./database/schema": "./database/schema.ts",
+		"./validators": "./validators/index.ts"
+	},
+	"scripts": {
+		"db:generate": "drizzle-kit generate",
+		"db:push": "drizzle-kit push",
+		"db:migrate": "drizzle-kit migrate",
+		"db:migrate:deploy": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio",
+		"db:start": "docker run --name shuffle-dev -p 5432:5432 -e POSTGRES_USER=shuffle -e POSTGRES_DB=shuffle-dev -e POSTGRES_PASSWORD=postgres -d postgres:18"
+	},
+	"dependencies": {
+		"@hono/zod-openapi": "catalog:shared",
+		"@t3-oss/env-core": "^0.13.8",
+		"date-fns": "catalog:shared",
+		"drizzle-orm": "catalog:shared",
+		"postgres": "^3.4.5",
+		"zod": "^4.1.13"
+	},
+	"devDependencies": {
+		"drizzle-kit": "^0.28.1"
+	}
 }

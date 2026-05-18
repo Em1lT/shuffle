@@ -1,20 +1,20 @@
 {
-  "name": "@shuffle:backend",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "dependencies": {
-    "@hono/swagger-ui": "^0.6.1",
-    "@hono/zod-openapi": "catalog:shared",
-    "zod": "catalog:shared",
-    "@shuffle:shared": "workspace:*",
-    "date-fns": "catalog:shared",
-    "drizzle-orm": "catalog:shared",
-    "hono": "^4.12.16"
-  },
-  "scripts": {
-    "dev": "bun --watch index.ts",
-    "test": "bun test",
-    "test:watch": "bun test --watch"
-  }
+	"name": "@shuffle:backend",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"dependencies": {
+		"@hono/swagger-ui": "^0.6.1",
+		"@hono/zod-openapi": "catalog:shared",
+		"zod": "catalog:shared",
+		"@shuffle:shared": "workspace:*",
+		"date-fns": "catalog:shared",
+		"drizzle-orm": "catalog:shared",
+		"hono": "^4.12.16"
+	},
+	"scripts": {
+		"dev": "bun --watch index.ts",
+		"test": "bun test",
+		"test:watch": "bun test --watch"
+	}
 }

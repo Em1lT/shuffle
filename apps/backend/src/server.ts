@@ -12,10 +12,10 @@ baseApp.route("/api/v1", eventHandlers);
 
 // Health check for external services
 baseApp.get("/check_health", (c) =>
-  c.json({
-    status: "OK",
-    time: Date.now(),
-  })
+	c.json({
+		status: "OK",
+		time: Date.now(),
+	}),
 );
 
 // Swagger UI
@@ -25,13 +25,13 @@ baseApp.get("/", swaggerUI({ url: "/docs/spec" }));
 
 // Environment check for staring different functions based on environment
 if (env.NODE_ENV === "development") {
-  showRoutes(baseApp, { verbose: true });
-  console.log("Shuffle API is running on port", env.PORT);
+	showRoutes(baseApp, { verbose: true });
+	console.log("Shuffle API is running on port", env.PORT);
 }
 
 // Error handling. Could be used for logging, etc.
 baseApp.onError((err, ctx) => {
-  return ctx.text(err.message, 500);
+	return ctx.text(err.message, 500);
 });
 
 export default baseApp;
