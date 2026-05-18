@@ -5,14 +5,16 @@ info:
 
 http:
   method: POST
-  url: http://localhost:3000/api/v1/events
+  url: http://localhost:3000/api/v1/event
   body:
     type: json
     data: |-
       {
-        "name": "secret",
+        "name": "secret1",
+        
         "dates": [
           "2027-01-01",
+          
           "2028-01-01"
         ]
       }

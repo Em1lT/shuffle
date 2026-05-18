@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/api/v1/events/6117b071-0f04-4678-820d-31f897f8b842
+  url: http://localhost:3000/api/v1/event/019e3c6f-2f1d-7298-9324-a412b9a7726e
   auth: inherit
 
 settings:

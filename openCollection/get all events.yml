@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/api/v1/events
+  url: http://localhost:3000/api/v1/event/list
   auth: inherit
 
 settings:

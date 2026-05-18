@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: http://localhost:3000/api/v1/events/d6073abb-d3e3-4022-8da1-37944690dc24/vote
+  url: http://localhost:3000/api/v1/events/019e3c37-1e3b-7409-909d-0c7c74ec539f/vote
   body:
     type: json
     data: |-
@@ -13,8 +13,8 @@ http:
         
         "name": "Jorma",
         "votes": [
-          "2029-01-01",
           "2027-01-01"
+          
         ]
       }
   auth: inherit

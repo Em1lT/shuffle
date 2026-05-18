@@ -9,18 +9,18 @@ import {
 } from "@shuffle:shared/database/schema";
 
 const eventInfoQuery = (id: string) =>
+      // https://stackoverflow.com/questions/78284252/how-to-return-array-of-objects-as-nested-field-from-sql-query
+      // Horrible for readability, but good for the challenge. READ /docs/philosophy.md 
 	db
 		.select({
 			id: events.id,
 			name: events.name,
 			dates: sql<string[]>`json_agg(TO_CHAR(${eventDates.date}, 'YYYY-MM-DD'))`,
 			votes: sql<{ date: string; people: string[] }[]>`
-      // https://stackoverflow.com/questions/78284252/how-to-return-array-of-objects-as-nested-field-from-sql-query
-      // Horrible for readability, but good for the challenge. READ /docs/philosophy.md 
       (SELECT coalesce(
         json_agg(
           json_build_object(
-            'date',  TO_CHAR(${eventDates.date}, 'YYYY-MM-DD'),
+            'date', TO_CHAR(${eventDates.date}, 'YYYY-MM-DD'),
             'people', (
               SELECT coalesce(json_agg(${users.name}), '[]'::json)
               FROM ${eventVotes}
