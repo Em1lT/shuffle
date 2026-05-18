@@ -2,7 +2,13 @@ import { z } from "@hono/zod-openapi";
 
 export const eventSchema = z.object({
 	name: z.string().min(3),
-	dates: z.array(z.coerce.date().min(new Date())),
+	dates: z.array(
+		z.coerce.date().min(new Date()).openapi({
+			type: "string",
+			format: "date",
+			example: "2026-05-18",
+		}),
+	),
 });
 
 export const eventsResponseSchema = z.object({
@@ -31,7 +37,13 @@ export const eventResponseSchema = z.object({
 
 export const eventVoteSchema = z.object({
 	name: z.string(),
-	votes: z.array(z.coerce.date()),
+	votes: z.array(
+		z.coerce.date().openapi({
+			type: "string",
+			format: "date",
+			example: "2026-05-18",
+		}),
+	),
 });
 
 export const createEventResponseSchema = z.object({

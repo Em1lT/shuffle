@@ -60,7 +60,7 @@ export const eventVotes = pgTable(
 			.references(() => users.id),
 	},
 	(t) => [
-		unique("unique_user_event_vote").on(t.name, t.eventId), // unique user per event
+		unique("unique_user_event_vote").on(t.name, t.eventId, t.dateId),
 	],
 );
 
