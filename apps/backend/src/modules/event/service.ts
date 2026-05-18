@@ -15,6 +15,8 @@ const eventInfoQuery = (id: string) =>
 			name: events.name,
 			dates: sql<string[]>`json_agg(TO_CHAR(${eventDates.date}, 'YYYY-MM-DD'))`,
 			votes: sql<{ date: string; people: string[] }[]>`
+      // https://stackoverflow.com/questions/78284252/how-to-return-array-of-objects-as-nested-field-from-sql-query
+      // Horrible for readability, but good for the challenge. READ /docs/philosophy.md 
       (SELECT coalesce(
         json_agg(
           json_build_object(
