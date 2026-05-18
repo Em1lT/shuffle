@@ -10,7 +10,7 @@ import {
 
 export const getEventsRoute = createRoute({
 	method: "get",
-	path: "/events",
+	path: "/event/list",
 	tags: ["Events"],
 	responses: {
 		200: {
@@ -26,7 +26,7 @@ export const getEventsRoute = createRoute({
 
 export const getEventRoute = createRoute({
 	method: "get",
-	path: "/events/{id}",
+	path: "/event/{id}",
 	tags: ["Events"],
 	request: {
 		params: eventParamSchema,
@@ -44,7 +44,7 @@ export const getEventRoute = createRoute({
 });
 export const postEventVoteRoute = createRoute({
 	method: "post",
-	path: "/events/{id}/vote",
+	path: "/event/{id}/vote",
 	tags: ["Events"],
 	request: {
 		params: eventParamSchema,
@@ -92,7 +92,7 @@ export const postEventRoute = createRoute({
 	method: "post",
 	operationId: "createEvent",
 	tags: ["Events"],
-	path: "/events",
+	path: "/event",
 	request: {
 		body: {
 			required: true,
