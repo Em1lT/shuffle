@@ -54,7 +54,7 @@ Fair game to say that the project is not finished yet when the 2 hour mark was r
 
 ### Testing
 
-    Made simple tests for the backend. Unit test
+    Made simple tests for the backend. Unit tests
 
 ### CI
 

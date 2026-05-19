@@ -85,7 +85,7 @@ export const voteOnEvent = async (
 					.where(
 						and(
 							eq(eventDates.eventId, events.id),
-							inArray(eventDates.date, data.votes),
+							inArray(eventDates.date, data.votes), // if even one date is in the range then add the ones that exists
 						),
 					),
 			),
