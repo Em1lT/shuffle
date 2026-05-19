@@ -10,10 +10,17 @@ import {
 
 const app = new OpenAPIHono();
 
+export const listUsersHandler: RouteHandler<typeof getEventsRoute> = async (ctx) => {
+	const users = await eventService.getIndividualRegisteredUsers();
+	return ctx.json(users);
+};
+
 export const getEventsHandler: RouteHandler<typeof getEventsRoute> = async (
 	ctx,
 ) => {
 	const events = await eventService.getEvents();
+	const users = await eventService.getIndividualRegisteredUsers();
+  console.log(users);
 	return ctx.json({ events });
 };
 
@@ -58,11 +65,11 @@ export const getSuitableDatesHandler: RouteHandler<
 };
 
 export const eventHandlers = app
-	//.openapi(route, handler)                                      // GET /example
-	.openapi(getEventsRoute, getEventsHandler) // GET /events
-	.openapi(getEventRoute, getEventHandler) // GET /events/{id}
-	.openapi(getSuitableDatesRoute, getSuitableDatesHandler) // GET /events/{id}/results
-	.openapi(postEventRoute, postEventHandler) // POST /events
-	.openapi(postEventVoteRoute, postEventVoteHandler); // POST /events/{id}/vote
+	//.openapi(route, handler)                                  // GET /example
+	.openapi(getEventsRoute, getEventsHandler)                  // GET /events
+	.openapi(getEventRoute, getEventHandler)                    // GET /events/{id}
+	.openapi(getSuitableDatesRoute, getSuitableDatesHandler)    // GET /events/{id}/results
+	.openapi(postEventRoute, postEventHandler)                  // POST /events
+	.openapi(postEventVoteRoute, postEventVoteHandler);         // POST /events/{id}/vote
 
 export default eventHandlers;
